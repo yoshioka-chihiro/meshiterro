@@ -7,8 +7,11 @@ class Post1ImagesController < ApplicationController
     @post_image = Post1Image.new
     # 保存するカラムの中身を操作し、ログイン中のユーザーのidを取得している
     @post_image.user_id = current_user.id
-    @post_image.save
-    redirect_to post1_images_path
+    if @post_image.save
+     redirect_to post1_images_path
+    else
+     render :new
+    end
   end
 
   def index
